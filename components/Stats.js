@@ -19,7 +19,7 @@ const StatBlock = styled.div`
 
 export default function Stats({ url }) {
   const { stats, loading, error } = useStats(url);
-  console.log(stats);
+  console.log("hello");
   if (error) return <p> Error...</p>;
   if (loading) return <p>Loading...</p>;
   if(!stats.confirmed) return <p>no stats</p>

@@ -93,6 +93,134 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./Components/Map1.js":
+/*!****************************!*\
+  !*** ./Components/Map1.js ***!
+  \****************************/
+/*! exports provided: WrappedMap */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WrappedMap", function() { return WrappedMap; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_google_maps__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-google-maps */ "react-google-maps");
+/* harmony import */ var react_google_maps__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_google_maps__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "/Users/ceaseless/Desktop/corona/Components/Map1.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+function Map(props) {
+  const {
+    0: trails,
+    1: setTrails
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const {
+    0: selectedTrail,
+    1: setSelectedTrail
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    fetch("https://covid19.mathdro.id/api/confirmed").then(r => r.json()).then(trails => {
+      setTrails(trails); // debugger;
+    });
+    console.log("this is the data", trails);
+  }, []);
+
+  const mapOnClick = trail => {
+    console.log(trail);
+    setSelectedTrail(trail);
+  };
+
+  return (// <div style={{ "height": "120", "width": "120" }}>
+    //   <div>
+    //     hgig 
+    //     </div>
+    __jsx(react_google_maps__WEBPACK_IMPORTED_MODULE_1__["GoogleMap"] // style={{ height: '100vh', width: '100%' }}
+    // width="120" 
+    // height="120"
+    , {
+      defaultZoom: 7,
+      defaultCenter: {
+        lat: 39,
+        lng: -106
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36
+      },
+      __self: this
+    }, trails.map(trail => __jsx(react_google_maps__WEBPACK_IMPORTED_MODULE_1__["Marker"], {
+      onClick: () => mapOnClick(trail),
+      key: trail.countryRegion,
+      position: {
+        lat: parseFloat(trail.lat),
+        lng: parseFloat(trail.long)
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 45
+      },
+      __self: this
+    })), selectedTrail && __jsx(react_google_maps__WEBPACK_IMPORTED_MODULE_1__["InfoWindow"], {
+      position: {
+        lat: parseFloat(selectedTrail.lat),
+        lng: parseFloat(selectedTrail.long)
+      },
+      onCloseClick: () => setSelectedTrail(null),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 58
+      },
+      __self: this
+    }, __jsx("div", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 65
+      },
+      __self: this
+    }, __jsx("h2", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 66
+      },
+      __self: this
+    }, selectedTrail.countryRegion), __jsx("h2", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 67
+      },
+      __self: this
+    }, selectedTrail.provinceState), __jsx("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 68
+      },
+      __self: this
+    }, selectedTrail.confirmed), __jsx("button", {
+      onClick: () => props.handleClick(selectedTrail),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 69
+      },
+      __self: this
+    }, "See Trails"), __jsx("button", {
+      onClick: () => props.handleClick(selectedTrail),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 70
+      },
+      __self: this
+    }, "See Trails")))) // </div>
+
+  );
+}
+
+const WrappedMap = Object(react_google_maps__WEBPACK_IMPORTED_MODULE_1__["withScriptjs"])(Object(react_google_maps__WEBPACK_IMPORTED_MODULE_1__["withGoogleMap"])(Map));
+
+/***/ }),
+
 /***/ "./components/CountrySelector.js":
 /*!***************************************!*\
   !*** ./components/CountrySelector.js ***!
@@ -256,7 +384,7 @@ function Stats({
     loading,
     error
   } = Object(_utils_useStats__WEBPACK_IMPORTED_MODULE_2__["default"])(url);
-  console.log(stats);
+  console.log("hello");
   if (error) return __jsx("p", {
     __source: {
       fileName: _jsxFileName,
@@ -395,11 +523,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_useStats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/useStats */ "./utils/useStats.js");
 /* harmony import */ var _components_Stats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Stats */ "./components/Stats.js");
 /* harmony import */ var _components_CountrySelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/CountrySelector */ "./components/CountrySelector.js");
+/* harmony import */ var _Components_Map1__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/Map1 */ "./Components/Map1.js");
 var _jsxFileName = "/Users/ceaseless/Desktop/corona/pages/index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
+ // import {WrappedMap} from '../Components/Map';
 
  // function useStats(){
 //     const [stats, setStats] = useState();
@@ -440,23 +571,70 @@ function index() {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 48
     },
     __self: this
   }, " hello", __jsx(_components_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
     url: 'https://covid19.mathdro.id/api',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 49
     },
     __self: this
   }), __jsx(_components_CountrySelector__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 48
+      lineNumber: 50
     },
     __self: this
-  }));
+  }), __jsx("div", {
+    style: {
+      width: '100vw',
+      height: '70vw'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: this
+  }, __jsx(_Components_Map1__WEBPACK_IMPORTED_MODULE_4__["WrappedMap"], {
+    googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${"AIzaSyCHbRK66vIfJsdXUtIyRDNZlZ1zSs2pSAc"}`,
+    loadingElement: __jsx("div", {
+      style: {
+        height: '100%'
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 56
+      },
+      __self: this
+    }),
+    containerElement: __jsx("div", {
+      style: {
+        height: '100%'
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 57
+      },
+      __self: this
+    }),
+    mapElement: __jsx("div", {
+      style: {
+        height: '100%'
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 58
+      },
+      __self: this
+    }),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: this
+  })));
 }
 
 /***/ }),
@@ -557,6 +735,17 @@ module.exports = __webpack_require__(/*! /Users/ceaseless/Desktop/corona/pages/i
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-google-maps":
+/*!************************************!*\
+  !*** external "react-google-maps" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-google-maps");
 
 /***/ }),
 

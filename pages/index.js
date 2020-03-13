@@ -2,7 +2,9 @@ import React from 'react';
 import {useState, useEffect } from 'react';
 import useStats from '../utils/useStats';
 import Stats from '../components/Stats';
-import CountrySelector from '../components/CountrySelector'
+import CountrySelector from '../components/CountrySelector';
+// import {WrappedMap} from '../Components/Map';
+import {WrappedMap} from '../Components/Map1';
 
 
 // function useStats(){
@@ -47,6 +49,15 @@ export default function index() {
             <Stats url={'https://covid19.mathdro.id/api'}></Stats>
             <CountrySelector></CountrySelector>
             {/* <Stats url={'https://covid19.mathdro.id/api/countries/USA'}></Stats> */}
+            
+            <div style={{width: '100vw', height: '70vw'}}>
+                <WrappedMap
+                        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
+                        loadingElement={<div style={{ height: '100%'}} />}
+                        containerElement={<div style={{ height: '100%'}} />}
+                        mapElement={<div style={{height: '100%'}} />}
+            />
+            </div>
         </div>
     )
 }

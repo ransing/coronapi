@@ -9,9 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "next": "^9.3.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-google-maps": "^9.4.5",
     "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "create-next": "^0.1.4"
   }
 }
