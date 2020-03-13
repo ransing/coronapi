@@ -46,7 +46,7 @@ export default function index() {
         <div> hello
             <Stats url={'https://covid19.mathdro.id/api'}></Stats>
             <CountrySelector></CountrySelector>
-            <Stats url={'https://covid19.mathdro.id/api/countries/USA'}></Stats>
+            {/* <Stats url={'https://covid19.mathdro.id/api/countries/USA'}></Stats> */}
         </div>
     )
 }
