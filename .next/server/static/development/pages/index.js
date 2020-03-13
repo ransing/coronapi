@@ -106,42 +106,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils_useStats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/useStats */ "./utils/useStats.js");
+/* harmony import */ var _Stats_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Stats.js */ "./components/Stats.js");
 var _jsxFileName = "/Users/ceaseless/Desktop/corona/components/CountrySelector.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
+
 function CountrySelector() {
   const countries = Object(_utils_useStats__WEBPACK_IMPORTED_MODULE_1__["default"])('https://covid19.mathdro.id/api/countries');
   console.log(countries);
+  const {
+    0: selectedCountry,
+    1: setSelectedCountry
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('USA');
   if (!countries) return __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 9
     },
     __self: this
   }, "loading ");
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 11
     },
     __self: this
-  }, __jsx("select", {
+  }, __jsx("h2", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 12
     },
     __self: this
-  }, Object.entries(countries.countries).map(([country, code]) => __jsx("option", {
-    key: code,
-    value: code,
+  }, "Current selection: ", selectedCountry), __jsx("select", {
+    onChange: e => {
+      setSelectedCountry(e.target.value);
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 13
     },
     __self: this
-  }, country)), ")}"));
+  }, Object.entries(countries.countries).map(([country, code]) => __jsx("option", {
+    key: code,
+    value: countries.iso3[code],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
+  }, country)), ")}"), __jsx(_Stats_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    url: `https://covid19.mathdro.id/api/countries/${selectedCountry}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    },
+    __self: this
+  }));
 }
 
 /***/ }),
@@ -164,8 +186,10 @@ var _jsxFileName = "/Users/ceaseless/Desktop/corona/components/Stats.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
-function Stats() {
-  const stats = Object(_utils_useStats__WEBPACK_IMPORTED_MODULE_1__["default"])('https://covid19.mathdro.id/api');
+function Stats({
+  url
+}) {
+  const stats = Object(_utils_useStats__WEBPACK_IMPORTED_MODULE_1__["default"])(url);
   if (!stats) return __jsx("p", {
     __source: {
       fileName: _jsxFileName,
@@ -311,6 +335,7 @@ function index() {
     },
     __self: this
   }, " hello", __jsx(_components_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    url: 'https://covid19.mathdro.id/api',
     __source: {
       fileName: _jsxFileName,
       lineNumber: 47
@@ -320,6 +345,13 @@ function index() {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 48
+    },
+    __self: this
+  }), __jsx(_components_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    url: 'https://covid19.mathdro.id/api/countries/USA',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
     },
     __self: this
   }));
@@ -345,10 +377,20 @@ function useStats(url) {
     0: stats,
     1: setStats
   } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
+  const {
+    0: loading,
+    1: setLoading
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const {
+    0: error,
+    1: setError
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     async function fetchData() {
       console.log('fetching');
-      const data = await fetch(url).then(data => data.json());
+      const data = await fetch(url).then(data => data.json()).catch(err => {
+        setError(err);
+      });
       setStats(data);
     }
 

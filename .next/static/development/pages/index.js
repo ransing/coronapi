@@ -14,32 +14,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utils_useStats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/useStats */ "./utils/useStats.js");
+/* harmony import */ var _Stats_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Stats.js */ "./components/Stats.js");
 
 var _jsxFileName = "/Users/ceaseless/Desktop/corona/components/CountrySelector.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
+
 function CountrySelector() {
   var countries = Object(_utils_useStats__WEBPACK_IMPORTED_MODULE_2__["default"])('https://covid19.mathdro.id/api/countries');
   console.log(countries);
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('USA'),
+      selectedCountry = _useState[0],
+      setSelectedCountry = _useState[1];
+
   if (!countries) return __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 9
     },
     __self: this
   }, "loading ");
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 11
     },
     __self: this
-  }, __jsx("select", {
+  }, __jsx("h2", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 12
+    },
+    __self: this
+  }, "Current selection: ", selectedCountry), __jsx("select", {
+    onChange: function onChange(e) {
+      setSelectedCountry(e.target.value);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
     },
     __self: this
   }, Object.entries(countries.countries).map(function (_ref) {
@@ -49,14 +65,21 @@ function CountrySelector() {
 
     return __jsx("option", {
       key: code,
-      value: code,
+      value: countries.iso3[code],
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 13
+        lineNumber: 18
       },
       __self: this
     }, country);
-  }), ")}"));
+  }), ")}"), __jsx(_Stats_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    url: "https://covid19.mathdro.id/api/countries/".concat(selectedCountry),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    },
+    __self: this
+  }));
 }
 
 /***/ }),
@@ -79,8 +102,9 @@ var _jsxFileName = "/Users/ceaseless/Desktop/corona/components/Stats.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
-function Stats() {
-  var stats = Object(_utils_useStats__WEBPACK_IMPORTED_MODULE_1__["default"])('https://covid19.mathdro.id/api');
+function Stats(_ref) {
+  var url = _ref.url;
+  var stats = Object(_utils_useStats__WEBPACK_IMPORTED_MODULE_1__["default"])(url);
   if (!stats) return __jsx("p", {
     __source: {
       fileName: _jsxFileName,
@@ -1108,6 +1132,7 @@ function index() {
     },
     __self: this
   }, " hello", __jsx(_components_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    url: 'https://covid19.mathdro.id/api',
     __source: {
       fileName: _jsxFileName,
       lineNumber: 47
@@ -1117,6 +1142,13 @@ function index() {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 48
+    },
+    __self: this
+  }), __jsx(_components_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    url: 'https://covid19.mathdro.id/api/countries/USA',
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
     },
     __self: this
   }));
@@ -1145,6 +1177,14 @@ function useStats(url) {
       stats = _useState[0],
       setStats = _useState[1];
 
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      loading = _useState2[0],
+      setLoading = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(),
+      error = _useState3[0],
+      setError = _useState3[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     function fetchData() {
       var data;
@@ -1156,6 +1196,8 @@ function useStats(url) {
               _context.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(fetch(url).then(function (data) {
                 return data.json();
+              })["catch"](function (err) {
+                setError(err);
               }));
 
             case 3:

@@ -1,8 +1,8 @@
 import {useState, useEffect } from 'react';
 import useStats from '../utils/useStats';
 
-export default function Stats(){
-    const stats = useStats('https://covid19.mathdro.id/api');
+export default function Stats({url}){
+    const stats = useStats(url);
     if(!stats) return <p>loading </p>
     return (
     <div> 
