@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -221,9 +221,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils_useStats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/useStats */ "./utils/useStats.js");
 /* harmony import */ var _Stats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Stats */ "./components/Stats.js");
+/* harmony import */ var react_dropdown_select__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dropdown-select */ "react-dropdown-select");
+/* harmony import */ var react_dropdown_select__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dropdown_select__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "/Users/ceaseless/Desktop/corona/components/CountrySelector.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -240,59 +243,74 @@ function CountrySelector() {
   if (loading) return __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 11
     },
     __self: this
   }, "Loading...");
   if (loading) return __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 12
     },
     __self: this
   }, "Loading...");
   if (error) return __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 13
     },
     __self: this
   }, "Error...");
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
-    },
-    __self: this
-  }, __jsx("h2", {
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 16
     },
     __self: this
-  }, "Currently Showing ", selectedCountry), __jsx("select", {
-    onChange: e => {
-      setSelectedCountry(e.target.value);
+  }, __jsx("h2", {
+    style: {
+      "font-family": "courier"
     },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 17
     },
     __self: this
+  }, "Currently Showing ", selectedCountry), __jsx("select", {
+    class: "custom-select",
+    style: {
+      "margin-bottom": "15px",
+      "height": "30px",
+      "font-size": "17px",
+      "background-color": "#ffff00"
+    } // options={options}
+    ,
+    values: [],
+    onChange: e => {
+      setSelectedCountry(e.target.value);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
   }, Object.entries(countries.countries).map(([country, code]) => __jsx("option", {
+    style: {
+      "font-size": "30px"
+    },
     selected: selectedCountry === countries.iso3[code],
     key: code,
     value: countries.iso3[code],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 29
     },
     __self: this
   }, country))), __jsx(_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
     url: `https://covid19.mathdro.id/api/countries/${selectedCountry}`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 39
     },
     __self: this
   }));
@@ -353,9 +371,9 @@ const StatGrid = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div`
   grid-gap: 1rem;
 `;
 const StatBlock = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div`
-  background: #9E8D4F;
+  background: #ff9966;
   font-size: 1.5rem;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 1rem;
   display: grid;
   align-items: center;
@@ -386,13 +404,19 @@ function Stats({
     __self: this
   }, "Loading...");
   if (!stats.confirmed) return __jsx("p", {
+    style: {
+      "font-size": "25px"
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 25
     },
     __self: this
-  }, "no stats");
+  }, "No Stats Available, Please check in later. ");
   return __jsx(StatGrid, {
+    style: {
+      "font-family": "courier"
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 27
@@ -560,13 +584,13 @@ function index() {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 50
     },
     __self: this
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_5___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 51
     },
     __self: this
   }, "  ", __jsx("link", {
@@ -575,13 +599,13 @@ function index() {
     href: "https://cdn3.iconfinder.com/data/icons/coronavirus-12/64/coronavirus-virus-pandemic-disease-infection-covid19-512.png",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 51
     },
     __self: this
   }), __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53
+      lineNumber: 54
     },
     __self: this
   }, "COVID-19 Tracker"), __jsx("meta", {
@@ -589,7 +613,7 @@ function index() {
     content: "initial-scale=1.0, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 55
     },
     __self: this
   })), __jsx("h1", {
@@ -598,20 +622,20 @@ function index() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 56
+      lineNumber: 57
     },
     __self: this
   }, "Latest COVID-19 Stats"), __jsx(_components_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
     url: 'https://covid19.mathdro.id/api',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 57
+      lineNumber: 58
     },
     __self: this
   }), __jsx(_components_CountrySelector__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 58
+      lineNumber: 59
     },
     __self: this
   }), __jsx("div", {
@@ -621,7 +645,7 @@ function index() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 61
+      lineNumber: 62
     },
     __self: this
   }, __jsx(_Components_Map1__WEBPACK_IMPORTED_MODULE_4__["WrappedMap"], {
@@ -632,7 +656,7 @@ function index() {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 64
+        lineNumber: 65
       },
       __self: this
     }),
@@ -642,7 +666,7 @@ function index() {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 65
+        lineNumber: 66
       },
       __self: this
     }),
@@ -652,13 +676,13 @@ function index() {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 66
+        lineNumber: 67
       },
       __self: this
     }),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 62
+      lineNumber: 63
     },
     __self: this
   })), __jsx("h4", {
@@ -667,7 +691,7 @@ function index() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 70
     },
     __self: this
   }, " ", __jsx("a", {
@@ -675,7 +699,7 @@ function index() {
     target: "_blank",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 69
+      lineNumber: 70
     },
     __self: this
   }, "Source code "), " "));
@@ -759,7 +783,7 @@ function useStats(url) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -790,6 +814,17 @@ module.exports = require("next/head");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-dropdown-select":
+/*!****************************************!*\
+  !*** external "react-dropdown-select" ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-dropdown-select");
 
 /***/ }),
 

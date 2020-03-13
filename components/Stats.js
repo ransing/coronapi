@@ -7,9 +7,9 @@ const StatGrid = styled.div`
   grid-gap: 1rem;
 `;
 const StatBlock = styled.div`
-  background: #9E8D4F;
+  background: #ff9966;
   font-size: 1.5rem;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 1rem;
   display: grid;
   align-items: center;
@@ -22,9 +22,9 @@ export default function Stats({ url }) {
   console.log("hello");
   if (error) return <p> Error...</p>;
   if (loading) return <p>Loading...</p>;
-  if(!stats.confirmed) return <p>no stats</p>
+  if(!stats.confirmed) return <p style={{"font-size":"25px"}}>No Stats Available, Please check in later. </p>
   return (
-    <StatGrid>
+    <StatGrid style={{"font-family":"courier"}}>
       <StatBlock>
         <h3>Confirmed:</h3>
         <span>{stats.confirmed.value}</span>

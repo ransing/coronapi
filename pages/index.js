@@ -8,6 +8,7 @@ import {WrappedMap} from '../Components/Map1';
 import Head from 'next/head';
 
 
+
 // function useStats(){
 //     const [stats, setStats] = useState();
 //     useEffect(() => {

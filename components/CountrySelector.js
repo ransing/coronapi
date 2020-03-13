@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useStats from '../utils/useStats';
 import Stats from './Stats';
+import Select from "react-dropdown-select";
 
 export default function CountrySelector() {
   const { stats: countries, loading, error } = useStats(
@@ -13,14 +14,20 @@ export default function CountrySelector() {
 
   return (
     <div>
-      <h2>Currently Showing {selectedCountry}</h2>
-      <select
+      <h2 style={{"font-family":"courier"}}>Currently Showing {selectedCountry}</h2>
+      <select class="custom-select"
+       style={{"margin-bottom":"15px", "height":"30px","font-size":"17px",
+        "background-color":"#ffff00"
+    }}
+        // options={options}
+        values={[]}
         onChange={e => {
           setSelectedCountry(e.target.value);
         }}
       >
         {Object.entries(countries.countries).map(([country, code]) => (
           <option
+            style={{"font-size":"30px"}}
             selected={selectedCountry === countries.iso3[code]}
             key={code}
             value={countries.iso3[code]}
