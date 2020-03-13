@@ -1,7 +1,8 @@
 import React from 'react';
 import {useState, useEffect } from 'react';
 import useStats from '../utils/useStats';
-import Stats from '../components/Stats'
+import Stats from '../components/Stats';
+import CountrySelector from '../components/CountrySelector'
 
 
 // function useStats(){
@@ -44,6 +45,7 @@ export default function index() {
     return (
         <div> hello
             <Stats></Stats>
+            <CountrySelector></CountrySelector>
         </div>
     )
 }
