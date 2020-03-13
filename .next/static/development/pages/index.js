@@ -51,7 +51,7 @@ function CountrySelector() {
     __self: this
   }, "Current selection: ", selectedCountry), __jsx("select", {
     onChange: function onChange(e) {
-      setSelectedCountry(e.target.value);
+      setSelectedCountry(e.target.value); // console.log("move country")
     },
     __source: {
       fileName: _jsxFileName,
@@ -68,18 +68,11 @@ function CountrySelector() {
       value: countries.iso3[code],
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 18
+        lineNumber: 19
       },
       __self: this
     }, country);
-  }), ")}"), __jsx(_Stats_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    url: "https://covid19.mathdro.id/api/countries/".concat(selectedCountry),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 24
-    },
-    __self: this
-  }));
+  }), ")}"));
 }
 
 /***/ }),
@@ -104,7 +97,12 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function Stats(_ref) {
   var url = _ref.url;
-  var stats = Object(_utils_useStats__WEBPACK_IMPORTED_MODULE_1__["default"])(url);
+
+  var _useStats = Object(_utils_useStats__WEBPACK_IMPORTED_MODULE_1__["default"])(url),
+      stats = _useStats.stats,
+      loading = _useStats.loading,
+      error = _useStats.error;
+
   if (!stats) return __jsx("p", {
     __source: {
       fileName: _jsxFileName,
@@ -112,73 +110,80 @@ function Stats(_ref) {
     },
     __self: this
   }, "loading ");
+  if (error) return __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }, "Error.. ");
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 9
     },
     __self: this
   }, __jsx("div", {
     className: "statBlock",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 9
+      lineNumber: 10
     },
     __self: this
   }, __jsx("h3", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 10
+      lineNumber: 11
     },
     __self: this
   }, " Confirmed "), __jsx("span", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 12
     },
     __self: this
   }, stats.confirmed.value)), __jsx("div", {
     className: "statBlock",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 14
     },
     __self: this
   }, __jsx("h3", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 15
     },
     __self: this
   }, " deaths:"), __jsx("span", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 16
     },
     __self: this
   }, stats.deaths.value)), __jsx("div", {
     className: "statBlock",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 18
     },
     __self: this
   }, __jsx("h3", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 19
     },
     __self: this
   }, "Received:  "), __jsx("span", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 20
     },
     __self: this
   }, " ", stats.recovered.value)), __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 22
     },
     __self: this
   }, " Stats "));
@@ -1203,8 +1208,9 @@ function useStats(url) {
             case 3:
               data = _context.sent;
               setStats(data);
+              setLoading(false);
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -1214,7 +1220,11 @@ function useStats(url) {
 
     fetchData();
   }, []);
-  return stats;
+  return {
+    stats: stats,
+    loading: loading,
+    error: error
+  };
 }
 
 /***/ }),

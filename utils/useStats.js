@@ -12,9 +12,14 @@ export default function useStats(url){
                 .catch(err=>{
                     setError(err)
                 });
-                setStats(data)
+                setStats(data);
+                setLoading(false);
         }
         fetchData();
     }, []);
-    return stats; 
+    return {
+        stats,
+        loading,
+        error,
+    }; 
 }

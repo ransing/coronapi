@@ -12,6 +12,7 @@ export default function CountrySelector(){
         <h2>Current selection: {selectedCountry}</h2>
         <select onChange= { e => {
             setSelectedCountry(e.target.value);
+            // console.log("move country")
         }}>
             {Object.entries(countries.countries).map((
                 [country, code]) => (
@@ -21,7 +22,7 @@ export default function CountrySelector(){
             ))
             })}
         </select>
-        <Stats url={`https://covid19.mathdro.id/api/countries/${selectedCountry}`}></Stats>
+        {/* <Stats url={`https://covid19.mathdro.id/api/countries/${selectedCountry}`}></Stats> */}
     </div>
     )
 }

@@ -2,8 +2,9 @@ import {useState, useEffect } from 'react';
 import useStats from '../utils/useStats';
 
 export default function Stats({url}){
-    const stats = useStats(url);
+    const {stats, loading, error} = useStats(url);
     if(!stats) return <p>loading </p>
+    if (error) return <p>Error.. </p>
     return (
     <div> 
         <div className="statBlock">
