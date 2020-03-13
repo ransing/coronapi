@@ -8,22 +8,22 @@ import {
 } from "react-google-maps";
 
 function Map(props) {
-  const [trails, setTrails] = useState([]);
-    const [selectedTrail, setSelectedTrail] = useState(null)
+  const [cases, setCases] = useState([]);
+    const [selectedCase, setSelectedCase] = useState(null)
 
   useEffect(() => {
     fetch("https://covid19.mathdro.id/api/confirmed")
     .then(r => r.json())
-    .then(trails => {
-      setTrails(trails);
+    .then(cases => {
+      setCases(cases);
       // debugger;
       });
-    console.log("this is the data", trails);
+    console.log("this is the data", cases);
   }, []);
 
-  const mapOnClick = (trail) => {
-    console.log(trail)
-    setSelectedTrail(trail)
+  const mapOnClick = (Case) => {
+    console.log(Case)
+    setSelectedCase(Case)
   }
 
   return (
@@ -37,38 +37,35 @@ function Map(props) {
       // style={{ height: '100vh', width: '100%' }}
       // width="120" 
       // height="120"
-      defaultZoom={7}
-      defaultCenter={{ lat: 39, lng: -106 }}
+      defaultZoom={4}
+      defaultCenter={{ lat: 39, lng: -98 }}
     >
       
-      {trails.map(trail => (
+      {cases.map(cases => (
           <Marker
-            onClick ={() => mapOnClick(trail)}
-            key={trail.countryRegion}
+            onClick ={() => mapOnClick(cases)}
+            key={cases.countryRegion}
             position={{
-              lat: parseFloat(trail.lat),
-              lng: parseFloat(trail.long)
+              lat: parseFloat(cases.lat),
+              lng: parseFloat(cases.long)
             }}
             
           />
         )
       )}
 
-      { selectedTrail && (
+      { selectedCase && (
         < InfoWindow
         position={{
-          lat: parseFloat(selectedTrail.lat),
-          lng: parseFloat(selectedTrail.long)
+          lat: parseFloat(selectedCase.lat),
+          lng: parseFloat(selectedCase.long)
         }}
-        onCloseClick={() => setSelectedTrail(null) }
+        onCloseClick={() => setSelectedCase(null) }
         >
           <div>
-            <h2>{selectedTrail.countryRegion}</h2>
-            <h2>{selectedTrail.provinceState}</h2>
-            <p>{selectedTrail.confirmed}</p>
-            <button onClick={()=> props.handleClick(selectedTrail)}>See Trails</button>
-            <button onClick={()=> props.handleClick(selectedTrail)}>See Trails</button>
-
+            <h3>{selectedCase.provinceState}, {selectedCase.countryRegion}</h3>
+            <p>Confirmed: {selectedCase.confirmed}</p>
+            <p>Deaths: {selectedCase.deaths}</p>
           </div>
 
           </InfoWindow>

@@ -7,10 +7,10 @@ const StatGrid = styled.div`
   grid-gap: 1rem;
 `;
 const StatBlock = styled.div`
-  background: #f2f2f2;
-  font-size: 2rem;
-  padding: 2rem;
-  border-radius: 2rem;
+  background: #9E8D4F;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
   display: grid;
   align-items: center;
   justify-items: center;

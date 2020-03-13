@@ -21,25 +21,25 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function Map(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      trails = _useState[0],
-      setTrails = _useState[1];
+      cases = _useState[0],
+      setCases = _useState[1];
 
   var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
-      selectedTrail = _useState2[0],
-      setSelectedTrail = _useState2[1];
+      selectedCase = _useState2[0],
+      setSelectedCase = _useState2[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetch("https://covid19.mathdro.id/api/confirmed").then(function (r) {
       return r.json();
-    }).then(function (trails) {
-      setTrails(trails); // debugger;
+    }).then(function (cases) {
+      setCases(cases); // debugger;
     });
-    console.log("this is the data", trails);
+    console.log("this is the data", cases);
   }, []);
 
-  var mapOnClick = function mapOnClick(trail) {
-    console.log(trail);
-    setSelectedTrail(trail);
+  var mapOnClick = function mapOnClick(Case) {
+    console.log(Case);
+    setSelectedCase(Case);
   };
 
   return (// <div style={{ "height": "120", "width": "120" }}>
@@ -50,25 +50,25 @@ function Map(props) {
     // width="120" 
     // height="120"
     , {
-      defaultZoom: 7,
+      defaultZoom: 4,
       defaultCenter: {
         lat: 39,
-        lng: -106
+        lng: -98
       },
       __source: {
         fileName: _jsxFileName,
         lineNumber: 36
       },
       __self: this
-    }, trails.map(function (trail) {
+    }, cases.map(function (cases) {
       return __jsx(react_google_maps__WEBPACK_IMPORTED_MODULE_1__["Marker"], {
         onClick: function onClick() {
-          return mapOnClick(trail);
+          return mapOnClick(cases);
         },
-        key: trail.countryRegion,
+        key: cases.countryRegion,
         position: {
-          lat: parseFloat(trail.lat),
-          lng: parseFloat(trail["long"])
+          lat: parseFloat(cases.lat),
+          lng: parseFloat(cases["long"])
         },
         __source: {
           fileName: _jsxFileName,
@@ -76,13 +76,13 @@ function Map(props) {
         },
         __self: this
       });
-    }), selectedTrail && __jsx(react_google_maps__WEBPACK_IMPORTED_MODULE_1__["InfoWindow"], {
+    }), selectedCase && __jsx(react_google_maps__WEBPACK_IMPORTED_MODULE_1__["InfoWindow"], {
       position: {
-        lat: parseFloat(selectedTrail.lat),
-        lng: parseFloat(selectedTrail["long"])
+        lat: parseFloat(selectedCase.lat),
+        lng: parseFloat(selectedCase["long"])
       },
       onCloseClick: function onCloseClick() {
-        return setSelectedTrail(null);
+        return setSelectedCase(null);
       },
       __source: {
         fileName: _jsxFileName,
@@ -95,43 +95,25 @@ function Map(props) {
         lineNumber: 65
       },
       __self: this
-    }, __jsx("h2", {
+    }, __jsx("h3", {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 66
       },
       __self: this
-    }, selectedTrail.countryRegion), __jsx("h2", {
+    }, selectedCase.provinceState, ", ", selectedCase.countryRegion), __jsx("p", {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 67
       },
       __self: this
-    }, selectedTrail.provinceState), __jsx("p", {
+    }, "Confirmed: ", selectedCase.confirmed), __jsx("p", {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 68
       },
       __self: this
-    }, selectedTrail.confirmed), __jsx("button", {
-      onClick: function onClick() {
-        return props.handleClick(selectedTrail);
-      },
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 69
-      },
-      __self: this
-    }, "See Trails"), __jsx("button", {
-      onClick: function onClick() {
-        return props.handleClick(selectedTrail);
-      },
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 70
-      },
-      __self: this
-    }, "See Trails")))) // </div>
+    }, "Deaths: ", selectedCase.deaths)))) // </div>
 
   );
 }
@@ -289,7 +271,7 @@ var _jsxFileName = "/Users/ceaseless/Desktop/corona/components/Stats.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 function _templateObject2() {
-  var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  background: #f2f2f2;\n  font-size: 2rem;\n  padding: 2rem;\n  border-radius: 2rem;\n  display: grid;\n  align-items: center;\n  justify-items: center;\n  text-align: center;\n"]);
+  var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  background: #9E8D4F;\n  font-size: 1.5rem;\n  padding: 1rem;\n  border-radius: 1rem;\n  display: grid;\n  align-items: center;\n  justify-items: center;\n  text-align: center;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -23320,17 +23302,26 @@ function index() {
       lineNumber: 48
     },
     __self: this
-  }, " hello", __jsx(_components_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    url: 'https://covid19.mathdro.id/api',
+  }, __jsx("h1", {
+    style: {
+      "textAlign": "center"
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 49
     },
     __self: this
-  }), __jsx(_components_CountrySelector__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "Latest COVID-19 Stats"), __jsx(_components_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    url: 'https://covid19.mathdro.id/api',
     __source: {
       fileName: _jsxFileName,
       lineNumber: 50
+    },
+    __self: this
+  }), __jsx(_components_CountrySelector__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
     },
     __self: this
   }), __jsx("div", {
@@ -23340,22 +23331,12 @@ function index() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53
+      lineNumber: 54
     },
     __self: this
   }, __jsx(_Components_Map1__WEBPACK_IMPORTED_MODULE_4__["WrappedMap"], {
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=".concat("AIzaSyCHbRK66vIfJsdXUtIyRDNZlZ1zSs2pSAc"),
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=".concat("AIzaSyC-1ZsQpNFYNv6V7EoAZczmQjiU6ULlbtc"),
     loadingElement: __jsx("div", {
-      style: {
-        height: '100%'
-      },
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 56
-      },
-      __self: this
-    }),
-    containerElement: __jsx("div", {
       style: {
         height: '100%'
       },
@@ -23365,7 +23346,7 @@ function index() {
       },
       __self: this
     }),
-    mapElement: __jsx("div", {
+    containerElement: __jsx("div", {
       style: {
         height: '100%'
       },
@@ -23375,12 +23356,39 @@ function index() {
       },
       __self: this
     }),
+    mapElement: __jsx("div", {
+      style: {
+        height: '100%'
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 59
+      },
+      __self: this
+    }),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 55
     },
     __self: this
-  })));
+  })), __jsx("h4", {
+    style: {
+      "textAlign": "center"
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62
+    },
+    __self: this
+  }, " ", __jsx("a", {
+    href: "https://github.com/ransing/coronapi",
+    target: "_blank",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62
+    },
+    __self: this
+  }, "Source code "), " "));
 }
 
 /***/ }),

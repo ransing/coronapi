@@ -45,7 +45,8 @@ import {WrappedMap} from '../Components/Map1';
 
 export default function index() {
     return (
-        <div> hello
+        <div> 
+            <h1 style={{"textAlign":"center"}}>Latest COVID-19 Stats</h1>
             <Stats url={'https://covid19.mathdro.id/api'}></Stats>
             <CountrySelector></CountrySelector>
             {/* <Stats url={'https://covid19.mathdro.id/api/countries/USA'}></Stats> */}
@@ -58,6 +59,8 @@ export default function index() {
                         mapElement={<div style={{height: '100%'}} />}
             />
             </div>
+            <h4 style={{"textAlign":"center"}} > <a href="https://github.com/ransing/coronapi" target="_blank">Source code </a> </h4>
         </div>
+
     )
 }

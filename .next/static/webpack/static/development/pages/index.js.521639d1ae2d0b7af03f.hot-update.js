@@ -66,17 +66,26 @@ function index() {
       lineNumber: 48
     },
     __self: this
-  }, " hello", __jsx(_components_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    url: 'https://covid19.mathdro.id/api',
+  }, __jsx("h1", {
+    style: {
+      "textAlign": "center"
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 49
     },
     __self: this
-  }), __jsx(_components_CountrySelector__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "Latest COVID-19 Stats"), __jsx(_components_Stats__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    url: 'https://covid19.mathdro.id/api',
     __source: {
       fileName: _jsxFileName,
       lineNumber: 50
+    },
+    __self: this
+  }), __jsx(_components_CountrySelector__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
     },
     __self: this
   }), __jsx("div", {
@@ -86,22 +95,12 @@ function index() {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 53
+      lineNumber: 54
     },
     __self: this
   }, __jsx(_Components_Map1__WEBPACK_IMPORTED_MODULE_4__["WrappedMap"], {
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=".concat("AIzaSyCHbRK66vIfJsdXUtIyRDNZlZ1zSs2pSAc"),
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=".concat("AIzaSyC-1ZsQpNFYNv6V7EoAZczmQjiU6ULlbtc"),
     loadingElement: __jsx("div", {
-      style: {
-        height: '100%'
-      },
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 56
-      },
-      __self: this
-    }),
-    containerElement: __jsx("div", {
       style: {
         height: '100%'
       },
@@ -111,7 +110,7 @@ function index() {
       },
       __self: this
     }),
-    mapElement: __jsx("div", {
+    containerElement: __jsx("div", {
       style: {
         height: '100%'
       },
@@ -121,15 +120,36 @@ function index() {
       },
       __self: this
     }),
+    mapElement: __jsx("div", {
+      style: {
+        height: '100%'
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 59
+      },
+      __self: this
+    }),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 55
     },
     __self: this
-  })));
+  })), __jsx("h4", {
+    style: {
+      "textAlign": "center"
+    },
+    href: "https://github.com/ransing/coronapi",
+    target: "_blank",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62
+    },
+    __self: this
+  }, "Source code"));
 }
 
 /***/ })
 
 })
-//# sourceMappingURL=index.js.ffa9fe1afd269dd25765.hot-update.js.map
+//# sourceMappingURL=index.js.521639d1ae2d0b7af03f.hot-update.js.map
