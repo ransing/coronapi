@@ -5,6 +5,7 @@ import Stats from '../components/Stats';
 import CountrySelector from '../components/CountrySelector';
 // import {WrappedMap} from '../Components/Map';
 import {WrappedMap} from '../Components/Map1';
+import Head from 'next/head';
 
 
 // function useStats(){
@@ -46,6 +47,12 @@ import {WrappedMap} from '../Components/Map1';
 export default function index() {
     return (
         <div> 
+            <Head>  <link rel="icon" 
+                    type="image/png" 
+                    href="https://cdn3.iconfinder.com/data/icons/coronavirus-12/64/coronavirus-virus-pandemic-disease-infection-covid19-512.png"/>
+                    <title>COVID-19 Tracker</title>
+                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <h1 style={{"textAlign":"center"}}>Latest COVID-19 Stats</h1>
             <Stats url={'https://covid19.mathdro.id/api'}></Stats>
             <CountrySelector></CountrySelector>
